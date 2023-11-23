@@ -2,7 +2,7 @@ const articles = [
     {
         id: 0,
         name: "Lapinou",
-        img: "./assets/img/costumes/lapin.jpg",
+        img: "lapin.jpg",
         price: 400.00,
         promo: true,
         qte: 10,
@@ -11,7 +11,7 @@ const articles = [
     {
         id: 1,
         name: "Canard",
-        img: "./assets/img/costumes/shopping.webp",
+        img: "shopping.webp",
         price: 350.00,
         promo: false,
         qte: 5,
@@ -20,7 +20,7 @@ const articles = [
     {
         id: 2,
         name: "Chaton",
-        img: "./assets/img/costumes/aerobic.jpg",
+        img: "aerobic.jpg",
         price: 500.00,
         promo: true,
         qte: 8,
@@ -29,7 +29,7 @@ const articles = [
     {
         id: 3,
         name: "Mario",
-        img: "./assets/img/costumes/mario.jpg",
+        img: "mario.jpg",
         price: 500.00,
         promo: true,
         qte: 15,
@@ -38,7 +38,7 @@ const articles = [
     {
         id: 4,
         name: "Los pollos hermanos",
-        img: "./assets/img/costumes/poulet.jpg",
+        img: "poulet.jpg",
         price: 500.00,
         promo: true,
         qte: 7,
@@ -47,7 +47,7 @@ const articles = [
     {
         id: 5,
         name: "Sushi",
-        img: "./assets/img/costumes/sushi.jpg",
+        img: "sushi.jpg",
         price: 500.00,
         promo: true,
         qte: 9,
@@ -56,7 +56,7 @@ const articles = [
     {
         id: 6,
         name: "Queen Mum",
-        img: "./assets/img/costumes/queen.jpg",
+        img: "queen.jpg",
         price: 500.00,
         promo: true,
         qte: 20,

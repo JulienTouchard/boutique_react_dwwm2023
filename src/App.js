@@ -11,14 +11,22 @@ const App = () => {
       'articles': articles
     }
   )
-  const decrementQte = (id) =>{
+  const [display, setD] = React.useState(
+    {
+      'articles': articles
+    }
+  )
+  const decrementQte = (id) => {
     //state.articles[id].qte--;
     //option1 :
-    let articlesTmp = state.articles;
-    articlesTmp[id].qte--;
-    setState({
-      'articles':articlesTmp
-    })
+    if (state.articles[id].qte > 0 ) {
+      let articlesTmp = state.articles;
+      articlesTmp[id].qte--;
+      setState({
+        'articles': articlesTmp
+      })
+    }
+    //option2 : .... lundi
   }
   return (
     <>

@@ -11,9 +11,9 @@ const App = () => {
       'articles': articles
     }
   )
-  const [display, setD] = React.useState(
+  const [statePanier, setStatePanier] = React.useState(
     {
-      'articles': articles
+      'displayPanier': false
     }
   )
   const decrementQte = (id) => {

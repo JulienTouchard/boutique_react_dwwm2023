@@ -1,7 +1,9 @@
 import React from 'react';
 import Gallery from './components/Gallery/Gallery';
 import { articles } from './articles.js';
+import { menuentries } from './menuentries.js';
 import './App.css';
+import Menu from './components/Menu/Menu.js';
 
 
 
@@ -16,6 +18,9 @@ const App = () => {
       'displayPanier': false
     }
   )
+  const handleDisplayPanier=()=>{
+    setStatePanier({'displayPanier': !statePanier.displayPanier})
+  }
   const decrementQte = (id) => {
     //state.articles[id].qte--;
     //option1 :
@@ -34,6 +39,10 @@ const App = () => {
         <source src="./assets/video/disco_ball_shining (1080p).mp4" type="video/mp4"></source>
       </video>
       <header>
+        <Menu 
+        handleDisplayPanier={handleDisplayPanier}
+        sendEntries={menuentries}
+        ></Menu>
         <h1>Bienvenue chez CostumShop!!!</h1>
       </header>
       <main>

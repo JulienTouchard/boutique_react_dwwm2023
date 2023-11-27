@@ -1,0 +1,13 @@
+#menu{
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+    top: 0;
+}
+#menu li{
+    padding: .5rem;
+}
+#menu li:hover{
+    cursor: pointer;
+    background-color: #c7c7c7;
+}

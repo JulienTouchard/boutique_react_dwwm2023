@@ -1,3 +1,4 @@
+import Achat from "../Achat/Achat";
 import "./Panier.css";
 const Panier = (props) => {
     return (
@@ -5,7 +6,11 @@ const Panier = (props) => {
             <div className="panier">
                 <div onClick={props.handleDisplayPanier} className="close">X</div>
                 <h2>mon panier</h2>
-
+                {
+                    props.achat.map(
+                        (value,index)=><Achat id={value} key={index}></Achat>
+                    )
+                }
             </div>
         </div>
     )

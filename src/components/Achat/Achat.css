@@ -1,0 +1,27 @@
+.achat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: .05rem solid #ccc;
+}
+
+.achatImg {
+    width: 60px;
+}
+
+.achat span {}
+
+.achatBtn {
+    background-color: #ccc;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    font-weight: 900;
+    transition: all .3s;
+    width: 30px;
+}
+
+.achatBtn:hover {
+    background-color: #fff;
+    border: 2px solid #ccc;
+}

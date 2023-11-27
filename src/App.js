@@ -10,10 +10,11 @@ import BoutiqueContext from './contexts/BoutiqueContext.js';
 
 
 const App = () => {
+
   const [state, setState] = React.useState(
     {
       'articles': articles,
-      'achat':[]
+      'achat': []
     }
   )
   const [statePanier, setStatePanier] = React.useState(
@@ -21,41 +22,57 @@ const App = () => {
       'displayPanier': false
     }
   )
-  const handleDisplayPanier=()=>{
-    setStatePanier({'displayPanier': !statePanier.displayPanier})
-  }
   const decrementQte = (id) => {
+    let achatTmp = [];
+    if (state.achat.length === 0) {
+      achatTmp = [{ 'idachat': id, 'qteachat': 1 }];
+    } else {
+      achatTmp = state.achat.map((value, index) => {
+        if (value.idachat === id) {
+          value.qteachat++
+        } else {
+          value = { 'idachat': id, 'qteachat': 1 }
+        }
+        console.dir(value);
+        return value
+
+      })
+    }
 
     //state.articles[id].qte--;
     //option1 :
-    if (state.articles[id].qte > 0 ) {
+    if (state.articles[id].qte > 0) {
       let articlesTmp = state.articles;
       articlesTmp[id].qte--;
       setState({
         'articles': articlesTmp,
         //spread operator option2 :
-        'achat':[...state.achat,id]
+        'achat': achatTmp
       })
     }
-    
   }
+  const handleDisplayPanier = () => {
+    setStatePanier({ 'displayPanier': !statePanier.displayPanier })
+  }
+
+
   return (
-    <BoutiqueContext.Provider value={state}>
+    <BoutiqueContext.Provider value={{ ...state, 'decrementQte': decrementQte }}>
       <video autoPlay muted loop id="myVideo">
         <source src="./assets/video/disco_ball_shining (1080p).mp4" type="video/mp4"></source>
       </video>
       <header>
-        <Menu 
-        handleDisplayPanier={handleDisplayPanier}
-        sendEntries={menuentries}
+        <Menu
+          handleDisplayPanier={handleDisplayPanier}
+          sendEntries={menuentries}
         ></Menu>
         <h1>Bienvenue chez CostumShop!!!</h1>
       </header>
       <main>
-        {statePanier.displayPanier?<Panier 
-        handleDisplayPanier={handleDisplayPanier}
-        achat={state.achat}
-        ></Panier>:<></>}
+        {statePanier.displayPanier ? <Panier
+          handleDisplayPanier={handleDisplayPanier}
+          achat={state.achat}
+        ></Panier> : <></>}
         <Gallery articles={state.articles} decrementQte={decrementQte}></Gallery>
       </main>
       <footer></footer>

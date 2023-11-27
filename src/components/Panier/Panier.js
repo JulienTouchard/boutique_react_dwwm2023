@@ -8,7 +8,7 @@ const Panier = (props) => {
                 <h2>mon panier</h2>
                 {
                     props.achat.map(
-                        (value,index)=><Achat id={value} key={index}></Achat>
+                        (value,index)=><Achat item={value} key={index}></Achat>
                     )
                 }
             </div>

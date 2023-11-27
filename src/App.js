@@ -4,6 +4,7 @@ import { articles } from './articles.js';
 import { menuentries } from './menuentries.js';
 import './App.css';
 import Menu from './components/Menu/Menu.js';
+import Panier from './components/Panier/Panier.js';
 
 
 
@@ -46,6 +47,7 @@ const App = () => {
         <h1>Bienvenue chez CostumShop!!!</h1>
       </header>
       <main>
+        <Panier></Panier>
         <Gallery articles={state.articles} decrementQte={decrementQte}></Gallery>
       </main>
       <footer></footer>

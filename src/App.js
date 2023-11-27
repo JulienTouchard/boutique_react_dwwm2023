@@ -47,7 +47,7 @@ const App = () => {
         <h1>Bienvenue chez CostumShop!!!</h1>
       </header>
       <main>
-        <Panier></Panier>
+        {statePanier.displayPanier?<Panier handleDisplayPanier={handleDisplayPanier}></Panier>:<></>}
         <Gallery articles={state.articles} decrementQte={decrementQte}></Gallery>
       </main>
       <footer></footer>

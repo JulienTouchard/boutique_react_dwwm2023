@@ -23,21 +23,33 @@ const App = () => {
     }
   )
   const decrementQte = (id) => {
+    console.log()
+    // je déclare un tableau vide pour enregistrer mes achats
     let achatTmp = [];
-    if (state.achat.length === 0) {
-      achatTmp = [{ 'idachat': id, 'qteachat': 1 }];
-    } else {
-      achatTmp = state.achat.map((value, index) => {
+    // je declare une boolean pour arreter ma boucle si le id === vaue.idachat
+    // si  il existe dans mon tableau achat un article avec le meme id (dejà acheté)
+    let stop = false;
+    // une condition pour déterminer si mon tableau achat est vide
+    if (state.achat.length > 0) {
+      // je lance une boucle map qui pourra retourner une copie de state.achat
+      // dans achatTmp
+      achatTmp = state.achat.map((value) => {
+        // si le resultat est positif
         if (value.idachat === id) {
-          value.qteachat++
-        } else {
-          value = { 'idachat': id, 'qteachat': 1 }
+          // j'incremente la qte de article acheté
+          value.qteachat++;
+          // j'empeche l'ajout d'un nouvel article à mon achatTmp
+          stop = true
         }
-        console.dir(value);
         return value
-
       })
     }
+    // si stop est resté à false (ma boucle n'a pas trouvé de resultat positif)
+    if (!stop) {
+      //j'ajoute un nouvel article à mon tableau achatTmp
+      achatTmp = [...achatTmp, { 'idachat': id, 'qteachat': 1 }];
+    }
+
 
     //state.articles[id].qte--;
     //option1 :
@@ -51,13 +63,42 @@ const App = () => {
       })
     }
   }
+  const qteIncrement = (id) => {
+    const tmpPanier = state.achat;
+    const tmpArticles = state.articles;
+    tmpPanier.map((value, index) => {
+      if (id === value.idachat) {
+        tmpPanier[index].qteachat--;
+        if (tmpPanier[index].qteachat === 0) {
+          //  supprimer l'entrée correspondante dans tmpPanier avec splice et index
+          tmpPanier.splice(index, 1);
+        }
+        // incrémenter l'article correspondant à l'id dans articlesApp
+        tmpArticles[id].qte++;
+        // setstate pour reajuster le panier et la qte (articlesApp)
+        setState({
+          ...state,
+          // mise à jour de ma qte pour i(id de l'article)
+          articles: tmpArticles,
+          // mise à jour de mon panier avec l'ajout de i
+          achat: tmpPanier
+        })
+      }
+    })
+
+  }
   const handleDisplayPanier = () => {
     setStatePanier({ 'displayPanier': !statePanier.displayPanier })
   }
 
 
   return (
-    <BoutiqueContext.Provider value={{ ...state, 'decrementQte': decrementQte }}>
+    <BoutiqueContext.Provider value={{
+      ...state,
+      'decrementQte': decrementQte,
+      'qteIncrement': qteIncrement
+
+    }}>
       <video autoPlay muted loop id="myVideo">
         <source src="./assets/video/disco_ball_shining (1080p).mp4" type="video/mp4"></source>
       </video>

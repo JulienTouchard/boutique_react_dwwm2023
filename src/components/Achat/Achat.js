@@ -13,7 +13,9 @@ const Achat = (props) => {
             </div>
             <span className="achatName">{article.name}</span>
             <span>
-                <span className="achatBtn">-</span>
+                <span className="achatBtn" onClick={
+                    ()=>boutiqueContext.qteIncrement(id)
+                }>-</span>
                 <span>{props.item.qteachat}</span>
                 <span className="achatBtn" onClick={
                     ()=>boutiqueContext.decrementQte(id)
